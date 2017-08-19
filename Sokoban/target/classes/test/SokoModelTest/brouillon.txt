@@ -1,0 +1,24 @@
+	public void testMoveRight() throws Exception {
+		currentPosition = player.getPosition();
+	
+		player.move(RIGHT);
+		assertEquals(player.position.x, currentPosition.x + 1);
+	}
+	
+	public void testMoveUp() throws Exception {
+		currentPosition = player.getPosition();
+		
+		player.move(UP);
+		assertEquals(player.position.y, currentPosition.y + 1);
+	}
+	
+	public void testMoveDown() throws Exception {
+		currentPosition = player.getPosition();
+		
+		player.move(DOWN);
+		assertEquals(player.position.y, currentPosition.y - 1);
+	}
+	
+	public void testPushBoxUp() throws Exception {
+			
+	}

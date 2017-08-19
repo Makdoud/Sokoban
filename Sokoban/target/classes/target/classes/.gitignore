@@ -1,0 +1,16 @@
+/.classpath
+/.project
+/.settings/
+/Sokoban.docx
+/bin/
+/javadoc/
+/main/
+/observer/
+/pom.xml
+/sokoController/
+/sokoImages/
+/sokoModel/
+/sokoStages/
+/sokoView/
+/target/
+/test/
