@@ -1,9 +1,10 @@
-13,07
+13
+07
 
-######!######
-##?   D   ?##
-#? #     # ?#
-# # B   B # #
-#  B  P  B  #
-#   #   #   #
-#############
+WWWWWWEWWWWWW
+WWH   D   HWW
+WH W     W HW
+W W B   B W W
+W  B  P  B  W
+W   W   W   W
+WWWWWWWWWWWWW

@@ -9,10 +9,12 @@ import sokoModel.Beacon;
 import sokoModel.Box;
 import sokoModel.Direction;
 import sokoModel.Door;
+import sokoModel.Exit;
 import sokoModel.LMap;
 import sokoModel.ObjectType;
 import sokoModel.Player;
 import sokoModel.Position;
+import sokoModel.Wall;
 
 public class SokoControleTest extends TestCase {
 
@@ -234,5 +236,71 @@ public class SokoControleTest extends TestCase {
 		
 	}
 	
-	
+	public void testLevelCreationUsingText() throws Exception{
+		Hashtable<Integer,Object> mapCompare = new Hashtable<Integer,Object>();
+		mapCompare.put(0, new Wall(new Position(0,0)));
+		mapCompare.put(1, new Wall(new Position(0,1)));
+		mapCompare.put(2, new Wall(new Position(0,2)));
+		mapCompare.put(3, new Wall(new Position(0,3)));
+		mapCompare.put(4, new Wall(new Position(0,4)));
+		mapCompare.put(5, new Wall(new Position(0,5)));
+		mapCompare.put(6, new Wall(new Position(0,6)));
+		mapCompare.put(100, new Wall(new Position(1,0)));
+		mapCompare.put(101, new Wall(new Position(1,1)));
+		mapCompare.put(102, new Beacon(new Position(1,2)));
+		mapCompare.put(107, new Wall(new Position(1,6)));
+		mapCompare.put(200, new Wall(new Position(2,0)));
+		mapCompare.put(201, new Beacon(new Position(2,1)));
+		mapCompare.put(203, new Wall(new Position(2,3)));
+		mapCompare.put(206, new Wall(new Position(2,6)));
+		mapCompare.put(300, new Wall(new Position(3,0)));
+		mapCompare.put(302, new Wall(new Position(3,2)));
+		mapCompare.put(304, new Box(new Position(3,4)));
+		mapCompare.put(306, new Wall(new Position(3,6)));
+		mapCompare.put(400, new Wall(new Position(4,0)));
+		mapCompare.put(403, new Box(new Position(4,3)));
+		mapCompare.put(405, new Wall(new Position(4,5)));
+		mapCompare.put(406, new Wall(new Position(4,6)));
+		mapCompare.put(500, new Wall(new Position(5,0)));
+		mapCompare.put(506, new Wall(new Position(5,6)));
+		mapCompare.put(600, new Exit(new Position(6,0)));
+		mapCompare.put(601, new Door(new Position(6,1)));
+		mapCompare.put(604, new Player(new Position(6,4), Direction.DOWN));
+		mapCompare.put(606, new Wall(new Position(6,6)));
+		mapCompare.put(700, new Wall(new Position(7,0)));
+		mapCompare.put(706, new Wall(new Position(7,6)));
+		mapCompare.put(800, new Wall(new Position(8,0)));
+		mapCompare.put(803, new Box(new Position(8,3)));
+		mapCompare.put(805, new Wall(new Position(8,5)));
+		mapCompare.put(806, new Wall(new Position(8,6)));
+		mapCompare.put(900, new Wall(new Position(9,0)));
+		mapCompare.put(902, new Wall(new Position(9,2)));
+		mapCompare.put(904, new Box(new Position(9,4)));
+		mapCompare.put(906, new Wall(new Position(9,6)));
+		mapCompare.put(1000, new Wall(new Position(10,0)));
+		mapCompare.put(1001, new Beacon(new Position(10,1)));
+		mapCompare.put(1003, new Wall(new Position(10,3)));
+		mapCompare.put(1006, new Wall(new Position(10,6)));
+		mapCompare.put(1100, new Wall(new Position(11,0)));
+		mapCompare.put(1101, new Wall(new Position(11,1)));
+		mapCompare.put(1102, new Beacon(new Position(11,2)));
+		mapCompare.put(1106, new Wall(new Position(11,6)));
+		mapCompare.put(1200, new Wall(new Position(12,0)));
+		mapCompare.put(1201, new Wall(new Position(12,1)));
+		mapCompare.put(1202, new Wall(new Position(12,2)));
+		mapCompare.put(1203, new Wall(new Position(12,3)));
+		mapCompare.put(1204, new Wall(new Position(12,4)));
+		mapCompare.put(1205, new Wall(new Position(12,5)));
+		mapCompare.put(1206, new Wall(new Position(12,6)));
+		
+		SokoControle.createLevel(1, SokoControle.levelMap);
+		
+		for(int x = 0 ; x < 1300 ; x = x + 100){
+			for(int y = 0; y < 7 ; y++){
+				if (mapCompare.get(SokoControle.positionToInt(new Position(x,y))) != null && SokoControle.levelMap.map.get(SokoControle.positionToInt(new Position(x,y)))!= null) {
+				assertEquals(mapCompare.get(SokoControle.positionToInt(new Position(x,y))).getClass(), SokoControle.levelMap.map.get(SokoControle.positionToInt(new Position(x,y))).getClass());
+				}
+			}
+		}
+	}
 }

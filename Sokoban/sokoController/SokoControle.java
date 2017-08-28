@@ -1,8 +1,16 @@
 package sokoController;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Scanner;
 
 import sokoModel.*;
 
@@ -159,5 +167,91 @@ public class SokoControle {
 		default : System.out.println("Not a valid command.");
 		}
 		return null;
+	}
+
+	public static void createLevel(int levelNumber, LMap levelMap) throws IOException {
+		// TODO Auto-generated method stub
+		BufferedReader scan;
+		int maxX , maxY;
+		Object nextObject = null;
+		int nextChar;
+		Position currentPosition = new Position();
+		int nextLine;
+		Class nextObjectClass = null;
+		char trueChar;
+		
+		switch (levelNumber){
+				case 1 :
+						scan = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/Makimoke/git/Sokoban/Sokoban/sokoStages/Stage1.txt"), Charset.forName("UTF-8")),9999);
+						break;
+				case 2 :
+						scan = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/Makimoke/git/Sokoban/Sokoban/sokoStages/Stage2.txt"), Charset.forName("UTF-8")),9999);
+						break;
+				default :
+						System.out.println("This stage doesn't exist.");
+						scan = null;
+						break;
+		}
+		maxX = Integer.parseInt(scan.readLine());
+		maxY = Integer.parseInt(scan.readLine());
+
+		scan.skip(2);
+		
+		
+		for (int y = 0 ; y < maxY ; y++){
+			currentPosition.setX(y);
+			
+			for (int x = 0 ; x < maxX ; x++){
+				nextChar = scan.read();
+				trueChar = (char) nextChar;
+				currentPosition.setY(x);
+				
+				switch (trueChar){
+						case 'W' :
+							nextObject = new Wall(new Position(x,y));
+							break;
+						case 'H' :
+							nextObject = new Beacon(new Position(x,y));
+							break;
+						case 'D' : 
+							nextObject = new Door(new Position(x,y));
+							break;
+						case 'P' : 
+							nextObject = new Player(new Position(x,y), Direction.DOWN);
+							break;
+						case 'B' :
+							nextObject = new Box(new Position(x,y));
+							break;
+						case 'E' : 
+							nextObject = new Exit(new Position(x,y));
+							break;
+						case ' ' :
+							nextObject = null;
+							break;
+				}
+				
+				if (nextObject != null){
+					levelMap.map.put(SokoControle.positionToInt(currentPosition), nextObject);
+					
+					nextObjectClass = nextObject.getClass();
+				}
+
+				
+				if (nextObjectClass == Beacon.class){
+					levelMap.beaconMap.put(SokoControle.positionToInt(currentPosition), ObjectType.BEACON);
+				}
+				
+				System.out.print(trueChar);
+				
+			}
+			
+			nextLine = scan.read();
+			
+			if (nextLine != -1){
+				scan.readLine();
+				System.out.println();
+			}
+		}
+		scan.close();
 	}
 }

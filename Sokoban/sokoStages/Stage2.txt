@@ -1,12 +1,14 @@
-#####################
-##!### ?        # #?#
-# D     ##  # #B#   #
-#        #  #B    # #
-# P  #      # ##  # #
-#?#  ##  #     # B# #
-########### # B#    #
-          #       # #
-          ### ####  #
-          #        ##
-          ##       ?#
-          ###########
+21;12;
+
+WWWWWWWWWWWWWWWWWWWWW
+WWEWWW H        W WHW
+W D     WW  W WBW   W
+W        W  WB    W W
+W P  W      W WW  W W
+WHW  WW  W     W BW W
+WWWWWWWWWWW W BW    W
+          W       W W
+          WWW WWWW  W
+          W        WW
+          WW       HW
+          WWWWWWWWWWW
